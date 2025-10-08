@@ -27,16 +27,16 @@ import { AnimatePresence, motion } from "motion/react";
 export function NavbarDemo() {
   const navItems = [
     {
-      name: "მთავარი",
-      link: "#Home",
+      name: "როგორ მუშაობს",
+      link: "#features",
     },
     {
-      name: "როგორ მუშაობს",
-      link: "#HowItWorks",
+      name: "რა შეგვიძლია",
+      link: "#functions",
     },
     {
       name: "ჩვენს შესახებ",
-      link: "#about-us",
+      link: "#team",
     },
   ];
 
@@ -44,13 +44,31 @@ export function NavbarDemo() {
   const [isSignupOpen, setIsSignupOpen] = useState(false);
   const [isLoginOpen, setIsLoginOpen] = useState(false);
 
+  // Function to handle smooth scroll with navbar offset
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      const navbarHeight = 120; // Approximate navbar height including top offset
+      const elementPosition = element.offsetTop;
+      const offsetPosition = elementPosition - navbarHeight;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
+    }
+  };
+
   return (
     <div className="relative w-full">
       <Navbar>
         {/* Desktop Navigation */}
         <NavBody>
           <NavbarLogo />
-          <NavItems items={navItems} />
+          <NavItems 
+            items={navItems} 
+            onItemClick={(item) => scrollToSection(item.link.replace('#', ''))} 
+          />
           <div className="flex items-center gap-4">
             <NavbarButton variant="secondary" onClick={() => setIsSignupOpen(true)}>რეგისტრაცია</NavbarButton>
             <NavbarButton variant="primary" onClick={() => setIsLoginOpen(true)}>შესვლა</NavbarButton>
@@ -72,14 +90,16 @@ export function NavbarDemo() {
             onClose={() => setIsMobileMenuOpen(false)}
           >
             {navItems.map((item, idx) => (
-              <a
+              <button
                 key={`mobile-link-${idx}`}
-                href={item.link}
-                onClick={() => setIsMobileMenuOpen(false)}
-                className="relative text-neutral-600 dark:text-neutral-300"
+                onClick={() => {
+                  scrollToSection(item.link.replace('#', ''));
+                  setIsMobileMenuOpen(false);
+                }}
+                className="relative text-neutral-600 dark:text-neutral-300 text-left w-full"
               >
                 <span className="block">{item.name}</span>
-              </a>
+              </button>
             ))}
             <div className="flex w-full flex-col gap-4">
               <NavbarButton
@@ -157,7 +177,12 @@ export function NavbarDemo() {
               pauseBetweenAnimations={0.3}
             />
             <div className="mt-12 flex w-full justify-center">
-              <GradientButton width="260px" height="60px" className="[--color-background:theme(colors.neutral.950)] [--color-text:theme(colors.yellow.400)]">
+              <GradientButton 
+                width="260px" 
+                height="60px" 
+                className="[--color-background:theme(colors.neutral.950)] [--color-text:theme(colors.yellow.400)]"
+                onClick={() => scrollToSection('features')}
+              >
                 შემოგვიერთდი
               </GradientButton>
             </div>
@@ -166,7 +191,7 @@ export function NavbarDemo() {
         </div>
       </section>
 
-      <section id="features" className="relative w-full mt-16">
+      <section id="features" className="relative w-full mt-16 pt-20">
         <div className="max-w-7xl mx-auto px-6">
           <WordPullUp
             words="როგორ მუშაობს ბიტკარი?"
@@ -177,7 +202,7 @@ export function NavbarDemo() {
         <FeaturesSectionWithHoverEffects />
       </section>
 
-      <section id="functions" className="relative w-full mt-20">
+      <section id="functions" className="relative w-full mt-20 pt-20">
         <CyberneticBentoGrid />
         
       </section>
@@ -203,7 +228,7 @@ export function NavbarDemo() {
         </ContainerScroll>
       </section>
 
-      <section id="team" className="relative w-full mt-16">
+      <section id="team" className="relative w-full mt-16 pt-20">
         <TeamSection />
       </section>
 
@@ -223,7 +248,7 @@ export default function App() {
         mainLinks={[
           { href: "#Home", label: "მთავარი" },
           { href: "#features", label: "როგორ მუშაობს" },
-          { href: "#functions", label: "ფუნქციები" },
+          { href: "#functions", label: "რა შეგვიძლია" },
           { href: "#team", label: "ჩვენს შესახებ" },
         ]}
         legalLinks={[
