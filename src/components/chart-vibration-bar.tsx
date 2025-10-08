@@ -160,7 +160,7 @@ export function ChartVibrationBar() {
   })
 
   return (
-    <Card className="@container/card">
+    <Card className="@container/card transition-all duration-300 hover:scale-[1.02] hover:shadow-lg hover:shadow-yellow-500/20">
       <CardHeader>
         <CardTitle>ვიბრაციის გრაფიკი</CardTitle>
         <CardDescription>

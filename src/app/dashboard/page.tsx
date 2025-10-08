@@ -5,8 +5,6 @@ import { ChartVibrationBar } from "@/components/chart-vibration-bar"
 import { ChartSoundLevel } from "@/components/chart-sound-level"
 import { ChartHiveHealth } from "@/components/chart-hive-health"
 import { AIInsightsCard } from "@/components/ai-insights-card"
-import { ThermalCameraPlaceholder } from "@/components/thermal-camera-placeholder"
-import { DataTable } from "@/components/data-table"
 import { SectionCards } from "@/components/section-cards"
 import { SiteHeader } from "@/components/site-header"
 import {
@@ -14,7 +12,6 @@ import {
   SidebarProvider,
 } from "@/components/ui/sidebar"
 
-import data from "./data.json"
 
 export default function DashboardPage() {
   return (
@@ -50,9 +47,6 @@ export default function DashboardPage() {
                   <ChartVibrationBar />
                   <ChartSoundLevel />
                 </div>
-              </div>
-              <div className="px-4 lg:px-6">
-                <ThermalCameraPlaceholder />
               </div>
               {/* <DataTable data={data} /> */}
             </div>
