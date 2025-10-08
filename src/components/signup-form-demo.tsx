@@ -1,7 +1,7 @@
 "use client";
 import type React from "react";
-import { Label } from "@/components/ui/label";
-import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/beetkar-label";
+import { Input } from "@/components/ui/beetkar-input";
 import { cn } from "@/lib/utils";
 import {
   IconBrandGithub,
@@ -15,17 +15,17 @@ export default function SignupFormDemo({ onSwitchToLogin }: { onSwitchToLogin?: 
     console.log("Form submitted");
   };
   return (
-    <div className="shadow-input mx-auto w-full max-w-md rounded-none bg-white p-4 md:rounded-2xl md:p-8 dark:bg-black">
-      <h2 className="text-xl font-bold text-neutral-800 dark:text-neutral-200">
+    <div className="shadow-input mx-auto w-full max-w-md rounded-none bg-white p-3 md:rounded-2xl md:p-8 dark:bg-black">
+      <h2 className="text-lg md:text-xl font-bold text-neutral-800 dark:text-neutral-200">
         კეთილი იყოს თქვენი დაბრუნდება!
       </h2>
-      <p className="mt-2 max-w-sm text-sm text-neutral-600 dark:text-neutral-300">
+      <p className="mt-1 md:mt-2 max-w-sm text-xs md:text-sm text-neutral-600 dark:text-neutral-300">
         
         yet
       </p>
 
-      <form className="my-8" onSubmit={handleSubmit}>
-        <div className="mb-4 flex flex-col space-y-2 md:flex-row md:space-y-0 md:space-x-2">
+      <form className="my-4 md:my-8" onSubmit={handleSubmit}>
+        <div className="mb-2 md:mb-4 flex flex-col space-y-2 md:flex-row md:space-y-0 md:space-x-2">
           <LabelInputContainer>
             <Label htmlFor="firstname">სახელი</Label>
             <Input id="firstname" placeholder="Tyler" type="text" />
@@ -35,15 +35,15 @@ export default function SignupFormDemo({ onSwitchToLogin }: { onSwitchToLogin?: 
             <Input id="lastname" placeholder="Durden" type="text" />
           </LabelInputContainer>
         </div>
-        <LabelInputContainer className="mb-4">
+        <LabelInputContainer className="mb-2 md:mb-4">
           <Label htmlFor="email">ელ-ფოსტა</Label>
           <Input id="email" placeholder="projectmayhem@fc.com" type="email" />
         </LabelInputContainer>
-        <LabelInputContainer className="mb-4">
+        <LabelInputContainer className="mb-2 md:mb-4">
           <Label htmlFor="password">პაროლი</Label>
           <Input id="password" placeholder="••••••••" type="password" />
         </LabelInputContainer>
-        <LabelInputContainer className="mb-8">
+        <LabelInputContainer className="mb-4 md:mb-8">
           <Label htmlFor="twitterpassword">გაიმეორეთ პაროლი</Label>
           <Input
             id="twitterpassword"
@@ -53,19 +53,19 @@ export default function SignupFormDemo({ onSwitchToLogin }: { onSwitchToLogin?: 
         </LabelInputContainer>
 
         <button
-          className="group/btn relative block h-10 w-full rounded-md bg-gradient-to-br from-black to-neutral-600 font-medium text-white shadow-[0px_1px_0px_0px_#ffffff40_inset,0px_-1px_0px_0px_#ffffff40_inset] dark:bg-zinc-800 dark:from-zinc-900 dark:to-zinc-900 dark:shadow-[0px_1px_0px_0px_#27272a_inset,0px_-1px_0px_0px_#27272a_inset]"
+          className="group/btn relative block h-8 md:h-10 w-full rounded-md bg-gradient-to-br from-black to-neutral-600 font-medium text-white shadow-[0px_1px_0px_0px_#ffffff40_inset,0px_-1px_0px_0px_#ffffff40_inset] dark:bg-zinc-800 dark:from-zinc-900 dark:to-zinc-900 dark:shadow-[0px_1px_0px_0px_#27272a_inset,0px_-1px_0px_0px_#27272a_inset]"
           type="submit"
         >
           Sign up &rarr;
           <BottomGradient />
         </button>
 
-        <p className="mt-3 text-center text-sm text-neutral-600 dark:text-neutral-400">
+        <p className="mt-2 md:mt-3 text-center text-xs md:text-sm text-neutral-600 dark:text-neutral-400">
           გაქვთ უკვე ანგარიში?
         </p>
 
         <button
-          className="group/btn relative mt-2 block h-10 w-full rounded-md bg-gradient-to-br from-black to-neutral-600 font-medium text-white shadow-[0px_1px_0px_0px_#ffffff40_inset,0px_-1px_0px_0px_#ffffff40_inset] dark:bg-zinc-800 dark:from-zinc-900 dark:to-zinc-900 dark:shadow-[0px_1px_0px_0px_#27272a_inset,0px_-1px_0px_0px_#27272a_inset]"
+          className="group/btn relative mt-1 md:mt-2 block h-8 md:h-10 w-full rounded-md bg-gradient-to-br from-black to-neutral-600 font-medium text-white shadow-[0px_1px_0px_0px_#ffffff40_inset,0px_-1px_0px_0px_#ffffff40_inset] dark:bg-zinc-800 dark:from-zinc-900 dark:to-zinc-900 dark:shadow-[0px_1px_0px_0px_#27272a_inset,0px_-1px_0px_0px_#27272a_inset]"
           type="button"
           onClick={onSwitchToLogin}
         >
@@ -73,35 +73,35 @@ export default function SignupFormDemo({ onSwitchToLogin }: { onSwitchToLogin?: 
           <BottomGradient />
         </button>
 
-        <div className="my-8 h-[1px] w-full bg-gradient-to-r from-transparent via-neutral-300 to-transparent dark:via-neutral-700" />
+        <div className="my-4 md:my-8 h-[1px] w-full bg-gradient-to-r from-transparent via-neutral-300 to-transparent dark:via-neutral-700" />
 
-        <div className="flex flex-col space-y-4">
+        <div className="flex flex-col space-y-2 md:space-y-4">
           <button
-            className="group/btn shadow-input relative flex h-10 w-full items-center justify-start space-x-2 rounded-md bg-gray-50 px-4 font-medium text-black dark:bg-zinc-900 dark:shadow-[0px_0px_1px_1px_#262626]"
+            className="group/btn shadow-input relative flex h-8 md:h-10 w-full items-center justify-start space-x-2 rounded-md bg-gray-50 px-3 md:px-4 font-medium text-black dark:bg-zinc-900 dark:shadow-[0px_0px_1px_1px_#262626]"
             type="submit"
           >
-            <IconBrandGithub className="h-4 w-4 text-neutral-800 dark:text-neutral-300" />
-            <span className="text-sm text-neutral-700 dark:text-neutral-300">
+            <IconBrandGithub className="h-3 w-3 md:h-4 md:w-4 text-neutral-800 dark:text-neutral-300" />
+            <span className="text-xs md:text-sm text-neutral-700 dark:text-neutral-300">
               GitHub
             </span>
             <BottomGradient />
           </button>
           <button
-            className="group/btn shadow-input relative flex h-10 w-full items-center justify-start space-x-2 rounded-md bg-gray-50 px-4 font-medium text-black dark:bg-zinc-900 dark:shadow-[0px_0px_1px_1px_#262626]"
+            className="group/btn shadow-input relative flex h-8 md:h-10 w-full items-center justify-start space-x-2 rounded-md bg-gray-50 px-3 md:px-4 font-medium text-black dark:bg-zinc-900 dark:shadow-[0px_0px_1px_1px_#262626]"
             type="submit"
           >
-            <IconBrandGoogle className="h-4 w-4 text-neutral-800 dark:text-neutral-300" />
-            <span className="text-sm text-neutral-700 dark:text-neutral-300">
+            <IconBrandGoogle className="h-3 w-3 md:h-4 md:w-4 text-neutral-800 dark:text-neutral-300" />
+            <span className="text-xs md:text-sm text-neutral-700 dark:text-neutral-300">
               Google
             </span>
             <BottomGradient />
           </button>
           <button
-            className="group/btn shadow-input relative flex h-10 w-full items-center justify-start space-x-2 rounded-md bg-gray-50 px-4 font-medium text-black dark:bg-zinc-900 dark:shadow-[0px_0px_1px_1px_#262626]"
+            className="group/btn shadow-input relative flex h-8 md:h-10 w-full items-center justify-start space-x-2 rounded-md bg-gray-50 px-3 md:px-4 font-medium text-black dark:bg-zinc-900 dark:shadow-[0px_0px_1px_1px_#262626]"
             type="submit"
           >
-            <IconBrandOnlyfans className="h-4 w-4 text-neutral-800 dark:text-neutral-300" />
-            <span className="text-sm text-neutral-700 dark:text-neutral-300">
+            <IconBrandOnlyfans className="h-3 w-3 md:h-4 md:w-4 text-neutral-800 dark:text-neutral-300" />
+            <span className="text-xs md:text-sm text-neutral-700 dark:text-neutral-300">
               OnlyFans
             </span>
             <BottomGradient />

@@ -1,7 +1,7 @@
 "use client";
 import type React from "react";
-import { Label } from "@/components/ui/label";
-import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/beetkar-label";
+import { Input } from "@/components/ui/beetkar-input";
 import { cn } from "@/lib/utils";
 import { IconBrandGithub, IconBrandGoogle } from "@tabler/icons-react";
 
