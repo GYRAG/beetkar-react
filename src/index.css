@@ -140,3 +140,62 @@
     --r: 360deg;
   }
 }
+
+/* Cybernetic Bento Grid styles */
+.main-container {
+  display: flex;
+  justify-content: center;
+  padding: 2rem 1rem;
+  overflow-x: hidden;
+}
+
+.bento-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-auto-rows: minmax(140px, auto);
+  gap: 1rem;
+  grid-auto-flow: dense;
+}
+
+@media (max-width: 1024px) {
+  .bento-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .bento-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.bento-item {
+  position: relative;
+  border-radius: 0.75rem;
+  padding: 1.25rem;
+  border: 1px solid oklch(1 0 0 / 10%);
+  background: linear-gradient(
+    180deg,
+    oklch(0.16 0 0 / 70%),
+    oklch(0.12 0 0 / 70%)
+  );
+  overflow: hidden;
+}
+
+.bento-item::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+    oklch(1 0 0 / 8%),
+    transparent 40%
+  );
+  opacity: 0;
+  transition: opacity 200ms ease;
+}
+
+.bento-item:hover::before {
+  opacity: 1;
+}
