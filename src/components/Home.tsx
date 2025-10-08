@@ -41,10 +41,6 @@ export function Home() {
       name: "ჩვენს შესახებ",
       link: "#team",
     },
-    {
-      name: "Dashboard",
-      link: "/dashboard",
-    },
   ];
 
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -89,7 +85,7 @@ export function Home() {
           />
           <div className="flex items-center gap-4">
             <NavbarButton variant="secondary" onClick={() => setIsSignupOpen(true)}>რეგისტრაცია</NavbarButton>
-            <NavbarButton variant="primary" onClick={() => setIsLoginOpen(true)}>შესვლა</NavbarButton>
+            <NavbarButton variant="primary" onClick={() => navigate('/dashboard')}>Dashboard</NavbarButton>
           </div>
         </NavBody>
 
@@ -122,17 +118,17 @@ export function Home() {
             <div className="flex w-full flex-col gap-4">
               <NavbarButton
                 onClick={() => { setIsSignupOpen(true); setIsMobileMenuOpen(false); }}
-                variant="primary"
+                variant="secondary"
                 className="w-full"
               >
                 რეგისტრაცია
               </NavbarButton>
               <NavbarButton
-                onClick={() => { setIsLoginOpen(true); setIsMobileMenuOpen(false); }}
+                onClick={() => { navigate('/dashboard'); setIsMobileMenuOpen(false); }}
                 variant="primary"
                 className="w-full"
               >
-                შესვლა
+                Dashboard
               </NavbarButton>
             </div>
           </MobileNavMenu>
@@ -237,7 +233,11 @@ export function Home() {
         >
           <div className="h-full w-full flex flex-col md:justify-between items-center text-zinc-200 md:text-zinc-300 p-4">
             <div className="flex-1 w-full flex items-center justify-center">
-              dashboard preview.
+              <img 
+                src="/dashboard.png" 
+                alt="Beetkar Dashboard Preview" 
+                className="w-full h-full object-contain rounded-lg shadow-2xl border border-gray-700"
+              />
             </div>
             <p className="mt-6 text-center text-sm md:text-base leading-relaxed">
               იხილეთ რეალურ დროში ტემპერატურის რუქები, სენსორული გრაფიკები და ჯანმრთელობის გაფრთხილებები ნებისმიერი ადგილიდან. Beetkar-ის სუფთა, თანამედროვე დაფა საშუალებას გაძლევთ შეადაროთ ჭინჭრის ციება, თვალყური ადევნოთ ისტორიას და იწინასწარმეტყველოთ რისკები.

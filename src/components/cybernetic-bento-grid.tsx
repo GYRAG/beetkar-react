@@ -58,8 +58,12 @@ export const CyberneticBentoGrid = () => {
                             <p className="mt-2 text-gray-400">Beetkar აფიქსირებს უჩვეულო სითბოს ან ბზუილის ნიმუშებს სკაში — იმ ნიშნებს, რომლებიც ჩვეულებრივ ჩნდება რამდენიმე დღით ადრე, სანამ ტკიპები ან დაავადებები თვალით გამოჩნდება.
                             წინასწარ გაიგებ, რომ რაღაც არ არის წესრიგში.</p>
                         </div>
-                        <div className="mt-4 h-40 lg:h-48 bg-neutral-800 rounded-lg flex items-center justify-center text-gray-500">
-                            Chart Placeholder
+                        <div className="mt-4 h-40 lg:h-48 bg-neutral-800 rounded-lg overflow-hidden">
+                            <img 
+                                src="/chart.png" 
+                                alt="Chart Preview" 
+                                className="w-full h-40% object-cover rounded-lg"
+                            />
                         </div>
                     </BentoItem>
                     <BentoItem>

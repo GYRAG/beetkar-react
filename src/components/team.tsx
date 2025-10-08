@@ -41,7 +41,7 @@ import BlurText from "@/components/BlurText.jsx";
 
 export default function TeamSection() {
   return (
-    <section className="bg-gray-50 py-16 md:py-32 dark:bg-transparent">
+    <section className="py-16 md:py-32">
       <div className="mx-auto max-w-5xl border-t px-6">
         <span className="text-caption -ml-6 -mt-3.5 block w-max bg-gray-50 px-6 dark:bg-gray-950">
           <BlurText text="ჩვენს შესახებ" animateBy="words" />

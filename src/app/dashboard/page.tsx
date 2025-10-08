@@ -3,6 +3,9 @@ import { ChartAreaInteractive } from "@/components/chart-area-interactive"
 import { ChartTemperatureLine } from "@/components/chart-temperature-line"
 import { ChartVibrationBar } from "@/components/chart-vibration-bar"
 import { ChartSoundLevel } from "@/components/chart-sound-level"
+import { ChartHiveHealth } from "@/components/chart-hive-health"
+import { AIInsightsCard } from "@/components/ai-insights-card"
+import { ThermalCameraPlaceholder } from "@/components/thermal-camera-placeholder"
 import { DataTable } from "@/components/data-table"
 import { SectionCards } from "@/components/section-cards"
 import { SiteHeader } from "@/components/site-header"
@@ -31,6 +34,12 @@ export default function DashboardPage() {
             <div className="flex flex-col gap-4 py-4 md:gap-6 md:py-6">
               <SectionCards />
               <div className="px-4 lg:px-6">
+                <AIInsightsCard />
+              </div>
+              <div className="px-4 lg:px-6">
+                <ChartHiveHealth />
+              </div>
+              <div className="px-4 lg:px-6">
                 <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
                   <ChartAreaInteractive />
                   <ChartTemperatureLine />
@@ -42,7 +51,10 @@ export default function DashboardPage() {
                   <ChartSoundLevel />
                 </div>
               </div>
-              <DataTable data={data} />
+              <div className="px-4 lg:px-6">
+                <ThermalCameraPlaceholder />
+              </div>
+              {/* <DataTable data={data} /> */}
             </div>
           </div>
         </div>
