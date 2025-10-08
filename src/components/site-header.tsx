@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button"
 import { Separator } from "@/components/ui/separator"
 import { SidebarTrigger } from "@/components/ui/sidebar"
 import { useNavigate } from "react-router-dom"
+import { motion } from "motion/react"
 
 export function SiteHeader() {
   const navigate = useNavigate();
@@ -16,14 +17,20 @@ export function SiteHeader() {
         />
         <h1 className="text-base font-medium">Beetkar Dashboard</h1>
         <div className="ml-auto flex items-center gap-2">
-          <Button 
-            variant="ghost" 
-            size="sm" 
-            onClick={() => navigate('/')}
-            className="dark:text-foreground"
+          <motion.div
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            transition={{ type: "spring", stiffness: 400, damping: 17 }}
           >
-            ← Back to Home
-          </Button>
+            <Button 
+              variant="ghost" 
+              size="sm" 
+              onClick={() => navigate('/')}
+              className="dark:text-foreground"
+            >
+              ← Back to Home
+            </Button>
+          </motion.div>
         </div>
       </div>
     </header>

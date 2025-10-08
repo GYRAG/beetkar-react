@@ -85,7 +85,13 @@ export function Home() {
           />
           <div className="flex items-center gap-4">
             <NavbarButton variant="secondary" onClick={() => setIsSignupOpen(true)}>რეგისტრაცია</NavbarButton>
-            <NavbarButton variant="primary" onClick={() => navigate('/dashboard')}>Dashboard</NavbarButton>
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              transition={{ type: "spring", stiffness: 400, damping: 17 }}
+            >
+              <NavbarButton variant="primary" onClick={() => navigate('/dashboard')}>Dashboard</NavbarButton>
+            </motion.div>
           </div>
         </NavBody>
 
@@ -123,13 +129,20 @@ export function Home() {
               >
                 რეგისტრაცია
               </NavbarButton>
-              <NavbarButton
-                onClick={() => { navigate('/dashboard'); setIsMobileMenuOpen(false); }}
-                variant="primary"
+              <motion.div
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                transition={{ type: "spring", stiffness: 400, damping: 17 }}
                 className="w-full"
               >
-                Dashboard
-              </NavbarButton>
+                <NavbarButton
+                  onClick={() => { navigate('/dashboard'); setIsMobileMenuOpen(false); }}
+                  variant="primary"
+                  className="w-full"
+                >
+                  Dashboard
+                </NavbarButton>
+              </motion.div>
             </div>
           </MobileNavMenu>
         </MobileNav>
