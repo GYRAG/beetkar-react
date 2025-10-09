@@ -47,7 +47,7 @@ export function useSensorData(
   const [lastUpdated, setLastUpdated] = useState<Date | null>(null);
   const [currentRange, setCurrentRange] = useState<TimeRange>(initialRange);
 
-  const pollingIntervalRef = useRef<NodeJS.Timeout | null>(null);
+  const pollingIntervalRef = useRef<number | null>(null);
 
   /**
    * Fetch latest sensor reading

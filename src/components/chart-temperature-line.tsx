@@ -36,100 +36,6 @@ import {
 
 export const description = "A temperature line chart"
 
-const chartData = [
-  { date: "2024-04-01", temperature: 18 },
-  { date: "2024-04-02", temperature: 19 },
-  { date: "2024-04-03", temperature: 20 },
-  { date: "2024-04-04", temperature: 22 },
-  { date: "2024-04-05", temperature: 24 },
-  { date: "2024-04-06", temperature: 25 },
-  { date: "2024-04-07", temperature: 23 },
-  { date: "2024-04-08", temperature: 26 },
-  { date: "2024-04-09", temperature: 28 },
-  { date: "2024-04-10", temperature: 27 },
-  { date: "2024-04-11", temperature: 25 },
-  { date: "2024-04-12", temperature: 24 },
-  { date: "2024-04-13", temperature: 26 },
-  { date: "2024-04-14", temperature: 28 },
-  { date: "2024-04-15", temperature: 30 },
-  { date: "2024-04-16", temperature: 29 },
-  { date: "2024-04-17", temperature: 27 },
-  { date: "2024-04-18", temperature: 25 },
-  { date: "2024-04-19", temperature: 24 },
-  { date: "2024-04-20", temperature: 26 },
-  { date: "2024-04-21", temperature: 28 },
-  { date: "2024-04-22", temperature: 30 },
-  { date: "2024-04-23", temperature: 29 },
-  { date: "2024-04-24", temperature: 27 },
-  { date: "2024-04-25", temperature: 25 },
-  { date: "2024-04-26", temperature: 24 },
-  { date: "2024-04-27", temperature: 26 },
-  { date: "2024-04-28", temperature: 28 },
-  { date: "2024-04-29", temperature: 30 },
-  { date: "2024-04-30", temperature: 29 },
-  { date: "2024-05-01", temperature: 27 },
-  { date: "2024-05-02", temperature: 25 },
-  { date: "2024-05-03", temperature: 24 },
-  { date: "2024-05-04", temperature: 26 },
-  { date: "2024-05-05", temperature: 28 },
-  { date: "2024-05-06", temperature: 30 },
-  { date: "2024-05-07", temperature: 29 },
-  { date: "2024-05-08", temperature: 27 },
-  { date: "2024-05-09", temperature: 25 },
-  { date: "2024-05-10", temperature: 24 },
-  { date: "2024-05-11", temperature: 26 },
-  { date: "2024-05-12", temperature: 28 },
-  { date: "2024-05-13", temperature: 30 },
-  { date: "2024-05-14", temperature: 29 },
-  { date: "2024-05-15", temperature: 27 },
-  { date: "2024-05-16", temperature: 25 },
-  { date: "2024-05-17", temperature: 24 },
-  { date: "2024-05-18", temperature: 26 },
-  { date: "2024-05-19", temperature: 28 },
-  { date: "2024-05-20", temperature: 30 },
-  { date: "2024-05-21", temperature: 29 },
-  { date: "2024-05-22", temperature: 27 },
-  { date: "2024-05-23", temperature: 25 },
-  { date: "2024-05-24", temperature: 24 },
-  { date: "2024-05-25", temperature: 26 },
-  { date: "2024-05-26", temperature: 28 },
-  { date: "2024-05-27", temperature: 30 },
-  { date: "2024-05-28", temperature: 29 },
-  { date: "2024-05-29", temperature: 27 },
-  { date: "2024-05-30", temperature: 25 },
-  { date: "2024-05-31", temperature: 24 },
-  { date: "2024-06-01", temperature: 26 },
-  { date: "2024-06-02", temperature: 28 },
-  { date: "2024-06-03", temperature: 30 },
-  { date: "2024-06-04", temperature: 29 },
-  { date: "2024-06-05", temperature: 27 },
-  { date: "2024-06-06", temperature: 25 },
-  { date: "2024-06-07", temperature: 24 },
-  { date: "2024-06-08", temperature: 26 },
-  { date: "2024-06-09", temperature: 28 },
-  { date: "2024-06-10", temperature: 30 },
-  { date: "2024-06-11", temperature: 29 },
-  { date: "2024-06-12", temperature: 27 },
-  { date: "2024-06-13", temperature: 25 },
-  { date: "2024-06-14", temperature: 24 },
-  { date: "2024-06-15", temperature: 26 },
-  { date: "2024-06-16", temperature: 28 },
-  { date: "2024-06-17", temperature: 30 },
-  { date: "2024-06-18", temperature: 29 },
-  { date: "2024-06-19", temperature: 27 },
-  { date: "2024-06-20", temperature: 25 },
-  { date: "2024-06-21", temperature: 24 },
-  { date: "2024-06-22", temperature: 26 },
-  { date: "2024-06-23", temperature: 28 },
-  { date: "2024-06-24", temperature: 30 },
-  { date: "2024-06-25", temperature: 29 },
-  { date: "2024-06-26", temperature: 27 },
-  { date: "2024-06-27", temperature: 25 },
-  { date: "2024-06-28", temperature: 24 },
-  { date: "2024-06-29", temperature: 26 },
-  { date: "2024-06-30", temperature: 28 },
-]
-
 const chartConfig = {
   temperature: {
     label: "ტემპერატურა",
@@ -166,20 +72,8 @@ export function ChartTemperatureLine() {
     })
   }, [historicalData])
 
-  // Use live data if available, otherwise fallback to static data
-  const filteredData = chartDataFromSensor.length > 0 ? chartDataFromSensor : chartData.filter((item) => {
-    const date = new Date(item.date)
-    const referenceDate = new Date("2024-06-30")
-    let daysToSubtract = 90
-    if (timeRange === "30d") {
-      daysToSubtract = 30
-    } else if (timeRange === "7d") {
-      daysToSubtract = 7
-    }
-    const startDate = new Date(referenceDate)
-    startDate.setDate(startDate.getDate() - daysToSubtract)
-    return date >= startDate
-  })
+  // Use live data from sensor
+  const filteredData = chartDataFromSensor;
 
   const handleTimeRangeChange = (newRange: string) => {
     const range = newRange as TimeRange

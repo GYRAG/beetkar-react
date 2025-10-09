@@ -36,100 +36,6 @@ import {
 
 export const description = "ტენიანობის ინტერაქტიული გრაფიკი"
 
-const chartData = [
-  { date: "2024-04-01", humidity: 65, target: 70 },
-  { date: "2024-04-02", humidity: 68, target: 70 },
-  { date: "2024-04-03", humidity: 72, target: 70 },
-  { date: "2024-04-04", humidity: 69, target: 70 },
-  { date: "2024-04-05", humidity: 66, target: 70 },
-  { date: "2024-04-06", humidity: 71, target: 70 },
-  { date: "2024-04-07", humidity: 74, target: 70 },
-  { date: "2024-04-08", humidity: 67, target: 70 },
-  { date: "2024-04-09", humidity: 70, target: 70 },
-  { date: "2024-04-10", humidity: 73, target: 70 },
-  { date: "2024-04-11", humidity: 68, target: 70 },
-  { date: "2024-04-12", humidity: 65, target: 70 },
-  { date: "2024-04-13", humidity: 69, target: 70 },
-  { date: "2024-04-14", humidity: 72, target: 70 },
-  { date: "2024-04-15", humidity: 75, target: 70 },
-  { date: "2024-04-16", humidity: 67, target: 70 },
-  { date: "2024-04-17", humidity: 64, target: 70 },
-  { date: "2024-04-18", humidity: 71, target: 70 },
-  { date: "2024-04-19", humidity: 73, target: 70 },
-  { date: "2024-04-20", humidity: 68, target: 70 },
-  { date: "2024-04-21", humidity: 66, target: 70 },
-  { date: "2024-04-22", humidity: 70, target: 70 },
-  { date: "2024-04-23", humidity: 74, target: 70 },
-  { date: "2024-04-24", humidity: 67, target: 70 },
-  { date: "2024-04-25", humidity: 65, target: 70 },
-  { date: "2024-04-26", humidity: 69, target: 70 },
-  { date: "2024-04-27", humidity: 72, target: 70 },
-  { date: "2024-04-28", humidity: 75, target: 70 },
-  { date: "2024-04-29", humidity: 68, target: 70 },
-  { date: "2024-04-30", humidity: 64, target: 70 },
-  { date: "2024-05-01", humidity: 71, target: 70 },
-  { date: "2024-05-02", humidity: 73, target: 70 },
-  { date: "2024-05-03", humidity: 67, target: 70 },
-  { date: "2024-05-04", humidity: 65, target: 70 },
-  { date: "2024-05-05", humidity: 69, target: 70 },
-  { date: "2024-05-06", humidity: 72, target: 70 },
-  { date: "2024-05-07", humidity: 74, target: 70 },
-  { date: "2024-05-08", humidity: 68, target: 70 },
-  { date: "2024-05-09", humidity: 66, target: 70 },
-  { date: "2024-05-10", humidity: 70, target: 70 },
-  { date: "2024-05-11", humidity: 73, target: 70 },
-  { date: "2024-05-12", humidity: 75, target: 70 },
-  { date: "2024-05-13", humidity: 67, target: 70 },
-  { date: "2024-05-14", humidity: 64, target: 70 },
-  { date: "2024-05-15", humidity: 71, target: 70 },
-  { date: "2024-05-16", humidity: 69, target: 70 },
-  { date: "2024-05-17", humidity: 72, target: 70 },
-  { date: "2024-05-18", humidity: 68, target: 70 },
-  { date: "2024-05-19", humidity: 65, target: 70 },
-  { date: "2024-05-20", humidity: 74, target: 70 },
-  { date: "2024-05-21", humidity: 70, target: 70 },
-  { date: "2024-05-22", humidity: 67, target: 70 },
-  { date: "2024-05-23", humidity: 69, target: 70 },
-  { date: "2024-05-24", humidity: 73, target: 70 },
-  { date: "2024-05-25", humidity: 75, target: 70 },
-  { date: "2024-05-26", humidity: 68, target: 70 },
-  { date: "2024-05-27", humidity: 66, target: 70 },
-  { date: "2024-05-28", humidity: 71, target: 70 },
-  { date: "2024-05-29", humidity: 74, target: 70 },
-  { date: "2024-05-30", humidity: 67, target: 70 },
-  { date: "2024-05-31", humidity: 64, target: 70 },
-  { date: "2024-06-01", humidity: 70, target: 70 },
-  { date: "2024-06-02", humidity: 73, target: 70 },
-  { date: "2024-06-03", humidity: 75, target: 70 },
-  { date: "2024-06-04", humidity: 68, target: 70 },
-  { date: "2024-06-05", humidity: 66, target: 70 },
-  { date: "2024-06-06", humidity: 69, target: 70 },
-  { date: "2024-06-07", humidity: 72, target: 70 },
-  { date: "2024-06-08", humidity: 74, target: 70 },
-  { date: "2024-06-09", humidity: 67, target: 70 },
-  { date: "2024-06-10", humidity: 65, target: 70 },
-  { date: "2024-06-11", humidity: 71, target: 70 },
-  { date: "2024-06-12", humidity: 73, target: 70 },
-  { date: "2024-06-13", humidity: 75, target: 70 },
-  { date: "2024-06-14", humidity: 68, target: 70 },
-  { date: "2024-06-15", humidity: 66, target: 70 },
-  { date: "2024-06-16", humidity: 70, target: 70 },
-  { date: "2024-06-17", humidity: 74, target: 70 },
-  { date: "2024-06-18", humidity: 67, target: 70 },
-  { date: "2024-06-19", humidity: 64, target: 70 },
-  { date: "2024-06-20", humidity: 72, target: 70 },
-  { date: "2024-06-21", humidity: 69, target: 70 },
-  { date: "2024-06-22", humidity: 73, target: 70 },
-  { date: "2024-06-23", humidity: 75, target: 70 },
-  { date: "2024-06-24", humidity: 68, target: 70 },
-  { date: "2024-06-25", humidity: 66, target: 70 },
-  { date: "2024-06-26", humidity: 71, target: 70 },
-  { date: "2024-06-27", humidity: 74, target: 70 },
-  { date: "2024-06-28", humidity: 67, target: 70 },
-  { date: "2024-06-29", humidity: 65, target: 70 },
-  { date: "2024-06-30", humidity: 70, target: 70 },
-]
-
 const chartConfig = {
   humidity: {
     label: "ტენიანობა",
@@ -166,20 +72,8 @@ export function ChartAreaInteractive() {
     })
   }, [historicalData])
 
-  // Use live data if available, otherwise fallback to static data
-  const filteredData = chartDataFromSensor.length > 0 ? chartDataFromSensor : chartData.filter((item) => {
-    const date = new Date(item.date)
-    const referenceDate = new Date("2024-06-30")
-    let daysToSubtract = 90
-    if (timeRange === "30d") {
-      daysToSubtract = 30
-    } else if (timeRange === "7d") {
-      daysToSubtract = 7
-    }
-    const startDate = new Date(referenceDate)
-    startDate.setDate(startDate.getDate() - daysToSubtract)
-    return date >= startDate
-  })
+  // Use live data from sensor
+  const filteredData = chartDataFromSensor;
 
   const handleTimeRangeChange = (newRange: string) => {
     const range = newRange as TimeRange
