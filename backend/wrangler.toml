@@ -1,0 +1,17 @@
+name = "beetkar-sensor-api"
+main = "src/index.ts"
+compatibility_date = "2024-10-09"
+
+# D1 Database binding
+[[d1_databases]]
+binding = "DB"
+database_name = "beetkar-sensors"
+database_id = "0ab85bfc-9298-4d8d-8ab2-2c7dae638444"
+
+# CORS configuration for development
+[env.development]
+vars = { ENVIRONMENT = "development" }
+
+[env.production]
+vars = { ENVIRONMENT = "production" }
+
