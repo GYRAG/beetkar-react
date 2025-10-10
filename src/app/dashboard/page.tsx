@@ -8,13 +8,27 @@ import { AIInsightsCard } from "@/components/ai-insights-card"
 import { SectionCards } from "@/components/section-cards"
 import { SiteHeader } from "@/components/site-header"
 import { ThermalCameraPlaceholder } from "@/components/thermal-camera-placeholder"
+import { InlineLoader } from "@/components/page-loader"
+import { useComponentLoading } from "@/hooks/useLoading"
 import {
   SidebarInset,
   SidebarProvider,
 } from "@/components/ui/sidebar"
+import { useEffect } from "react"
 
 
 export default function DashboardPage() {
+  const { isLoading, startLoading, stopLoading } = useComponentLoading();
+
+  // Example function to trigger loading when needed (e.g., on data refresh)
+  const handleRefreshData = () => {
+    startLoading('Refreshing dashboard data...');
+    // Simulate API call
+    setTimeout(() => {
+      stopLoading();
+    }, 2000);
+  };
+
   return (
     <SidebarProvider
       style={
@@ -53,6 +67,18 @@ export default function DashboardPage() {
                 <ThermalCameraPlaceholder />
               </div>
               {/* <DataTable data={data} /> */}
+              
+              {/* Example: Button to trigger loading */}
+              <div className="px-4 lg:px-6">
+                <button 
+                  onClick={handleRefreshData}
+                  className="px-4 py-2 bg-primary text-primary-foreground rounded-md hover:bg-primary/90 transition-colors"
+                >
+                  Refresh Data
+                </button>
+              </div>
+              
+              <InlineLoader isLoading={isLoading} message="Loading dashboard data..." />
             </div>
           </div>
         </div>
