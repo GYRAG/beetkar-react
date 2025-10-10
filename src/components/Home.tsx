@@ -23,6 +23,7 @@ import LoginFormDemo from "@/components/login-form-demo";
 import TeamSection from "@/components/team";
 import { Footer } from "@/components/ui/footer";
 import { ThemeToggle } from "@/components/ui/theme-toggle";
+import { TextShimmer } from "@/components/ui/text-shimmer";
 import { AnimatePresence, motion } from "motion/react";
 import { useNavigate } from "react-router-dom";
 
@@ -204,6 +205,16 @@ export function Home() {
               animationDuration={0.5}
               pauseBetweenAnimations={0.3}
             />
+            <div className="mt-8 max-w-4xl mx-auto px-6">
+              <TextShimmer
+                as="p"
+                className="text-lg md:text-xl text-center leading-relaxed font-body"
+                duration={3}
+                spread={1.5}
+              >
+                ჭკვიანი სენსორებით აღჭურვილი Beetkar აკვირდება სკის ტემპერატურას, ტენიანობას, ხმასა და ვიბრაციას, რათა დაავადებები შენიშნოს მანამდე, სანამ ისინი გავრცელდება.
+              </TextShimmer>
+            </div>
             <div className="mt-12 flex w-full justify-center">
               <GradientButton 
                 width="260px" 
