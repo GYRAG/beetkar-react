@@ -22,6 +22,7 @@ import SignupFormDemo from "@/components/signup-form-demo";
 import LoginFormDemo from "@/components/login-form-demo";
 import TeamSection from "@/components/team";
 import { Footer } from "@/components/ui/footer";
+import { ThemeToggle } from "@/components/ui/theme-toggle";
 import { AnimatePresence, motion } from "motion/react";
 import { useNavigate } from "react-router-dom";
 
@@ -281,6 +282,7 @@ export function Home() {
           { href: "#", label: "Contact" },
         ]}
         copyright={{ text: `© ${new Date().getFullYear()} Beetkar. All rights reserved.` }}
+        themeToggle={<ThemeToggle />}
       />
     </div>
   );

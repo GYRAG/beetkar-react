@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button"
 import { Separator } from "@/components/ui/separator"
 import { SidebarTrigger } from "@/components/ui/sidebar"
+import { ThemeToggle } from "@/components/ui/theme-toggle"
 import { useNavigate } from "react-router-dom"
 import { motion } from "motion/react"
 
@@ -17,6 +18,7 @@ export function SiteHeader() {
         />
         <h1 className="text-base font-medium">Beetkar Dashboard</h1>
         <div className="ml-auto flex items-center gap-2">
+          <ThemeToggle className="scale-90" />
           <motion.div
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
@@ -28,7 +30,7 @@ export function SiteHeader() {
               onClick={() => navigate('/')}
               className="dark:text-foreground"
             >
-              ← Back to Home
+              ← უკან დაბრუნება
             </Button>
           </motion.div>
         </div>
