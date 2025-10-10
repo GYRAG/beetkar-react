@@ -207,7 +207,7 @@ export function Home() {
               <GradientButton 
                 width="260px" 
                 height="60px" 
-                className="[--color-background:theme(colors.neutral.950)] [--color-text:theme(colors.yellow.400)]"
+                className="[--color-background:theme(colors.neutral.950)] [--color-text:theme(colors.yellow.400)] font-hero"
                 onClick={() => scrollToSection('features')}
               >
                 შემოგვიერთდი
@@ -265,7 +265,7 @@ export function Home() {
 
       {/* Footer */}
       <Footer
-        logo={<span className="inline-block h-6 w-6 rounded bg-yellow-400" />}
+        logo={<img src="/logo.svg" alt="Beetkar Logo" className="h-6 w-6" />}
         brandName="Beetkar"
         socialLinks={[]}
         mainLinks={[

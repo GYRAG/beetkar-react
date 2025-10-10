@@ -235,10 +235,11 @@ export const NavbarLogo = () => {
       className="relative z-20 mr-4 flex items-center space-x-2 px-2 py-1 text-sm font-normal text-black"
     >
       <img
-        src="https://assets.aceternity.com/logo-dark.png"
-        alt="logo"
+        src="/logo.svg"
+        alt="Beetkar Logo"
         width={30}
         height={30}
+        className="w-8 h-8"
       />
       <span className="font-medium text-black dark:text-white">Beetkar</span>
     </a>

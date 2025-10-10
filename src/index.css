@@ -3,6 +3,23 @@
 
 @custom-variant dark (&:is(.dark *));
 
+/* Custom Fonts */
+@font-face {
+  font-family: 'ArchyedtBold';
+  src: url('./fonts/archyedt-bold-60540591796.otf') format('opentype');
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'GLTatishvili';
+  src: url('./fonts/gl-tatishvili-metal-bold-38807891663.ttf') format('truetype');
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
 @theme inline {
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
@@ -119,7 +136,17 @@
   }
   body {
     @apply bg-background text-foreground;
+    font-family: 'GLTatishvili', sans-serif;
   }
+}
+
+/* Font utility classes */
+.font-hero {
+  font-family: 'ArchyedtBold', sans-serif;
+}
+
+.font-body {
+  font-family: 'GLTatishvili', sans-serif;
 }
 
 /* Button-1 rotating gradient support */

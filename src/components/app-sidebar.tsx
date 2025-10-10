@@ -146,8 +146,14 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
               asChild
               className="data-[slot=sidebar-menu-button]:!p-1.5"
             >
-              <a href="#">
-                <IconInnerShadowTop className="!size-5" />
+              <a href="#" className="flex items-center space-x-2">
+                <img
+                  src="/logo.svg"
+                  alt="Beetkar Logo"
+                  width={20}
+                  height={20}
+                  className="w-5 h-5"
+                />
                 <span className="text-base font-semibold">Beetkar</span>
               </a>
             </SidebarMenuButton>

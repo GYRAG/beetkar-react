@@ -11,6 +11,7 @@
   position: relative;
   font-size: clamp(3rem, 8vw, 5rem);
   font-weight: 900;
+  font-family: 'ArchyedtBold', sans-serif;
   cursor: pointer;
   transition:
     filter 0.3s ease,
