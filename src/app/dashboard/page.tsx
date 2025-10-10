@@ -7,6 +7,7 @@ import { ChartHiveHealth } from "@/components/chart-hive-health"
 import { AIInsightsCard } from "@/components/ai-insights-card"
 import { SectionCards } from "@/components/section-cards"
 import { SiteHeader } from "@/components/site-header"
+import { ThermalCameraPlaceholder } from "@/components/thermal-camera-placeholder"
 import {
   SidebarInset,
   SidebarProvider,
@@ -47,6 +48,9 @@ export default function DashboardPage() {
                   <ChartVibrationBar />
                   <ChartSoundLevel />
                 </div>
+              </div>
+              <div className="px-4 lg:px-6">
+                <ThermalCameraPlaceholder />
               </div>
               {/* <DataTable data={data} /> */}
             </div>

@@ -13,7 +13,7 @@ export const description = "თერმული კამერის პი�
 
 export function ThermalCameraPlaceholder() {
   return (
-    <Card className="flex flex-col">
+    <Card className="flex flex-col @container/card transition-all duration-300 hover:scale-[1.02] hover:shadow-lg hover:shadow-orange-500/20">
       <CardHeader className="items-center pb-0">
         <div className="flex items-center gap-2">
           <Camera className="h-5 w-5 text-orange-500" />
