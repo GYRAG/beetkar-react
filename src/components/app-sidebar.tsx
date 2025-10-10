@@ -8,7 +8,6 @@ import {
   IconFileDescription,
   IconFileWord,
   IconHelp,
-  IconInnerShadowTop,
   IconListDetails,
   IconReport,
   IconSearch,

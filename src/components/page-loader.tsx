@@ -1,4 +1,3 @@
-import React from 'react';
 import { Spinner } from './spinner-1';
 import { cn } from '@/lib/utils';
 

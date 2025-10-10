@@ -14,7 +14,6 @@ import {
   SidebarInset,
   SidebarProvider,
 } from "@/components/ui/sidebar"
-import { useEffect } from "react"
 
 
 export default function DashboardPage() {
