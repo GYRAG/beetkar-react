@@ -24,7 +24,7 @@ export interface ApiResponse<T> {
 export type TimeRange = '15m' | '1h' | '24h' | '7d';
 
 // Get API URL from environment variable or use default for development
-const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:8787';
+const API_BASE_URL = import.meta.env.VITE_API_URL || 'https://beetkar-sensor-api.testarosa.workers.dev';
 
 // Debug: Log the API URL being used
 console.log('🔧 Sensor Service API URL:', API_BASE_URL);

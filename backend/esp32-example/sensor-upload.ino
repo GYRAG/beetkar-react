@@ -43,7 +43,7 @@ const char* ssid = "YOUR_WIFI_SSID";
 const char* password = "YOUR_WIFI_PASSWORD";
 
 // API endpoint (replace with your Cloudflare Worker URL)
-const char* serverUrl = "https://your-worker-name.your-subdomain.workers.dev/api/sensor-data";
+const char* serverUrl = "https://beetkar-sensor-api.testarosa.workers.dev/api/sensor-data";
 
 // ---------- Globals ----------
 Adafruit_BME680 bme;
