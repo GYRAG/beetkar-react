@@ -4,6 +4,8 @@ import { ChartTemperatureLine } from "@/components/chart-temperature-line"
 import { ChartVibrationBar } from "@/components/chart-vibration-bar"
 import { ChartSoundLevel } from "@/components/chart-sound-level"
 import { ChartHiveHealth } from "@/components/chart-hive-health"
+import { ChartGasResistance } from "@/components/chart-gas-resistance"
+import { ChartPressure } from "@/components/chart-pressure"
 import { AIInsightsCard } from "@/components/ai-insights-card"
 import { SectionCards } from "@/components/section-cards"
 import { SiteHeader } from "@/components/site-header"
@@ -60,6 +62,12 @@ export default function DashboardPage() {
                 <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
                   <ChartVibrationBar />
                   <ChartSoundLevel />
+                </div>
+              </div>
+              <div className="px-4 lg:px-6">
+                <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
+                  <ChartGasResistance />
+                  <ChartPressure />
                 </div>
               </div>
               <div className="px-4 lg:px-6">

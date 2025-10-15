@@ -12,12 +12,20 @@ interface SensorReading {
   id?: number;
   temperature: number;
   humidity: number;
+  gas_resistance: number;
+  pressure: number;
+  vibration_rms: number;
+  audio_dbfs: number;
   timestamp: string;
 }
 
 interface SensorDataRequest {
   temperature: number;
   humidity: number;
+  gas_resistance: number;
+  pressure: number;
+  vibration_rms: number;
+  audio_dbfs: number;
 }
 
 // CORS headers for cross-origin requests
@@ -45,10 +53,22 @@ function validateSensorData(data: any): data is SensorDataRequest {
     data !== null &&
     typeof data.temperature === 'number' &&
     typeof data.humidity === 'number' &&
+    typeof data.gas_resistance === 'number' &&
+    typeof data.pressure === 'number' &&
+    typeof data.vibration_rms === 'number' &&
+    typeof data.audio_dbfs === 'number' &&
     data.temperature >= -40 &&
     data.temperature <= 80 &&
     data.humidity >= 0 &&
-    data.humidity <= 100
+    data.humidity <= 100 &&
+    data.gas_resistance >= 0 &&
+    data.gas_resistance <= 1000 &&
+    data.pressure >= 0.5 &&
+    data.pressure <= 1.5 &&
+    data.vibration_rms >= 0 &&
+    data.vibration_rms <= 100 &&
+    data.audio_dbfs >= -100 &&
+    data.audio_dbfs <= 0
   );
 }
 
@@ -64,7 +84,7 @@ async function handlePostSensorData(request: Request, env: Env): Promise<Respons
       return new Response(
         JSON.stringify({
           success: false,
-          error: 'Invalid sensor data. Temperature must be between -40 and 80, humidity between 0 and 100.',
+          error: 'Invalid sensor data. Temperature: -40 to 80°C, Humidity: 0-100%, Gas: 0-1000 kΩ, Pressure: 0.5-1.5 atm, Vibration: 0-100 m/s², Audio: -100 to 0 dBFS.',
         }),
         {
           status: 400,
@@ -75,9 +95,9 @@ async function handlePostSensorData(request: Request, env: Env): Promise<Respons
 
     // Insert sensor reading into database
     const result = await env.DB.prepare(
-      'INSERT INTO sensor_readings (temperature, humidity, timestamp) VALUES (?, ?, datetime("now"))'
+      'INSERT INTO sensor_readings (temperature, humidity, gas_resistance, pressure, vibration_rms, audio_dbfs, timestamp) VALUES (?, ?, ?, ?, ?, ?, datetime("now"))'
     )
-      .bind(data.temperature, data.humidity)
+      .bind(data.temperature, data.humidity, data.gas_resistance, data.pressure, data.vibration_rms, data.audio_dbfs)
       .run();
 
     // Clean up old records (older than 90 days) - run periodically
@@ -120,7 +140,7 @@ async function handlePostSensorData(request: Request, env: Env): Promise<Respons
 async function handleGetLatest(env: Env): Promise<Response> {
   try {
     const result = await env.DB.prepare(
-      'SELECT temperature, humidity, timestamp FROM sensor_readings ORDER BY timestamp DESC LIMIT 1'
+      'SELECT temperature, humidity, gas_resistance, pressure, vibration_rms, audio_dbfs, timestamp FROM sensor_readings ORDER BY timestamp DESC LIMIT 1'
     ).first<SensorReading>();
 
     if (!result) {
@@ -203,6 +223,10 @@ async function handleGetHistory(request: Request, env: Env): Promise<Response> {
         SELECT 
           temperature, 
           humidity, 
+          gas_resistance,
+          pressure,
+          vibration_rms,
+          audio_dbfs,
           timestamp 
         FROM sensor_readings 
         WHERE timestamp >= ${timeFilter}
@@ -214,6 +238,10 @@ async function handleGetHistory(request: Request, env: Env): Promise<Response> {
         SELECT 
           AVG(temperature) as temperature,
           AVG(humidity) as humidity,
+          AVG(gas_resistance) as gas_resistance,
+          AVG(pressure) as pressure,
+          AVG(vibration_rms) as vibration_rms,
+          AVG(audio_dbfs) as audio_dbfs,
           datetime(strftime('%Y-%m-%d %H:00:00', timestamp)) as timestamp
         FROM sensor_readings 
         WHERE timestamp >= ${timeFilter}

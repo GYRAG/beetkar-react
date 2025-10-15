@@ -6,6 +6,10 @@
 export interface SensorReading {
   temperature: number;
   humidity: number;
+  gas_resistance: number;
+  pressure: number;
+  vibration_rms: number;
+  audio_dbfs: number;
   timestamp: string;
 }
 
@@ -96,7 +100,11 @@ export async function fetchHistoricalData(
  */
 export async function postSensorData(
   temperature: number,
-  humidity: number
+  humidity: number,
+  gas_resistance: number,
+  pressure: number,
+  vibration_rms: number,
+  audio_dbfs: number
 ): Promise<boolean> {
   try {
     const response = await fetch(`${API_BASE_URL}/api/sensor-data`, {
@@ -104,7 +112,14 @@ export async function postSensorData(
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ temperature, humidity }),
+      body: JSON.stringify({ 
+        temperature, 
+        humidity, 
+        gas_resistance, 
+        pressure, 
+        vibration_rms, 
+        audio_dbfs 
+      }),
     });
 
     if (!response.ok) {
