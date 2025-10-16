@@ -9,7 +9,7 @@ import { ChartPressure } from "@/components/chart-pressure"
 import { AIInsightsCard } from "@/components/ai-insights-card"
 import { SectionCards } from "@/components/section-cards"
 import { SiteHeader } from "@/components/site-header"
-import { ThermalCameraPlaceholder } from "@/components/thermal-camera-placeholder"
+import { ThermalCameraStream } from "@/components/thermal-camera-stream"
 import { InlineLoader } from "@/components/page-loader"
 import { useComponentLoading } from "@/hooks/useLoading"
 import {
@@ -71,7 +71,7 @@ export default function DashboardPage() {
                 </div>
               </div>
               <div className="px-4 lg:px-6">
-                <ThermalCameraPlaceholder />
+                <ThermalCameraStream src={import.meta.env.VITE_THERMAL_STREAM_URL || "http://localhost:8080/mjpeg"} />
               </div>
               {/* <DataTable data={data} /> */}
               
