@@ -49,17 +49,49 @@ def radiometric_to_jpeg(img_json: dict) -> bytes:
 
 
 def stream_thread():
-    cam = TCam()
-    stat = cam.connect(cfg["camera_host"], cfg.get("camera_port", 5001))
-    if stat.get("status") != "connected":
-        return
-    cam.start_stream()
     while not stop_flag:
-        f = cam.get_frame()
-        if f and "radiometric" in f:
-            latest_jpeg["bytes"] = radiometric_to_jpeg(f)
-        else:
-            time.sleep(0.005)
+        cam = None
+        try:
+            print("[tcam-bridge] Starting camera connection...")
+            cam = TCam()
+            stat = cam.connect(cfg["camera_host"], cfg.get("camera_port", 5001))
+            print(f"[tcam-bridge] Connect result: {stat}")
+            
+            if stat.get("status") != "connected":
+                print("[tcam-bridge] Connection failed, retrying in 5 seconds...")
+                time.sleep(5)
+                continue
+                
+            print("[tcam-bridge] Starting stream...")
+            cam.start_stream()
+            
+            frame_count = 0
+            while not stop_flag:
+                try:
+                    f = cam.get_frame()
+                    if f and "radiometric" in f:
+                        latest_jpeg["bytes"] = radiometric_to_jpeg(f)
+                        frame_count += 1
+                        if frame_count % 10 == 0:
+                            print(f"[tcam-bridge] Processed {frame_count} frames")
+                    else:
+                        time.sleep(0.01)
+                except Exception as e:
+                    print(f"[tcam-bridge] Frame error: {e}")
+                    break
+                    
+        except Exception as e:
+            print(f"[tcam-bridge] Thread error: {e}")
+            
+        finally:
+            if cam:
+                try:
+                    cam.shutdown()
+                except:
+                    pass
+                    
+        print("[tcam-bridge] Reconnecting in 5 seconds...")
+        time.sleep(5)
 
 
 @app.get("/health")
@@ -103,6 +135,6 @@ def index():
 if __name__ == "__main__":
     t = threading.Thread(target=stream_thread, daemon=True)
     t.start()
-    app.run(host="0.0.0.0", port=8080, threaded=True)
+    app.run(host="0.0.0.0", port=8080, threaded=True, debug=False)
 
 
