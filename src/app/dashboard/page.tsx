@@ -71,7 +71,7 @@ export default function DashboardPage() {
                 </div>
               </div>
               <div className="px-4 lg:px-6">
-                <ThermalCameraStream src={import.meta.env.VITE_THERMAL_STREAM_URL || "http://localhost:8080/mjpeg"} />
+                <ThermalCameraStream src="https://bridge.beetkar.com/mjpeg" />
               </div>
               {/* <DataTable data={data} /> */}
               
