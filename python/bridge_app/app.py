@@ -5,7 +5,7 @@ import array
 import threading
 
 import numpy as np
-from flask import Flask, Response, jsonify
+from flask import Flask, Response, jsonify, request
 from PIL import Image
 
 try:
@@ -23,17 +23,27 @@ if str(python_root) not in sys.path:
     sys.path.insert(0, str(python_root))
 
 from tcam import TCam
+from palettes import palettes
 
 
 with open(this_dir / "config.toml", "rb") as f:
     cfg = tomllib.load(f)
 app = Flask(__name__)
 
+# Add CORS headers manually
+@app.after_request
+def after_request(response):
+    response.headers.add('Access-Control-Allow-Origin', '*')
+    response.headers.add('Access-Control-Allow-Headers', 'Content-Type,Authorization')
+    response.headers.add('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS')
+    return response
+
 latest_jpeg = {"bytes": None}
 stop_flag = False
+current_palette = "gray"  # Default palette
 
 
-def radiometric_to_jpeg(img_json: dict) -> bytes:
+def radiometric_to_jpeg(img_json: dict, palette_name: str = "gray") -> bytes:
     dec = base64.b64decode(img_json["radiometric"])  # 160x120 uint16
     ra = array.array("H", dec)
     a = np.frombuffer(ra, dtype=np.uint16).reshape(120, 160)
@@ -41,8 +51,24 @@ def radiometric_to_jpeg(img_json: dict) -> bytes:
     mx = int(a.max())
     if mx == mn:
         mx = mn + 1
+    
+    # Convert to 8-bit grayscale
     g = ((a - mn) * 255 / (mx - mn)).astype(np.uint8)
-    img = Image.fromarray(g, mode="L")
+    
+    # Apply palette if not grayscale
+    if palette_name != "gray" and palette_name in palettes:
+        palette = palettes[palette_name]
+        # Convert grayscale to RGB using palette
+        rgb_array = np.zeros((120, 160, 3), dtype=np.uint8)
+        for i in range(120):
+            for j in range(160):
+                idx = g[i, j]
+                rgb_array[i, j] = palette[idx]
+        img = Image.fromarray(rgb_array, mode="RGB")
+    else:
+        # Use grayscale
+        img = Image.fromarray(g, mode="L")
+    
     buf = io.BytesIO()
     img.save(buf, format="JPEG", quality=85)
     return buf.getvalue()
@@ -70,7 +96,7 @@ def stream_thread():
                 try:
                     f = cam.get_frame()
                     if f and "radiometric" in f:
-                        latest_jpeg["bytes"] = radiometric_to_jpeg(f)
+                        latest_jpeg["bytes"] = radiometric_to_jpeg(f, current_palette)
                         frame_count += 1
                         if frame_count % 10 == 0:
                             print(f"[tcam-bridge] Processed {frame_count} frames")
@@ -96,7 +122,25 @@ def stream_thread():
 
 @app.get("/health")
 def health():
-    return jsonify({"ok": True, "have_frame": latest_jpeg["bytes"] is not None})
+    return jsonify({"ok": True, "have_frame": latest_jpeg["bytes"] is not None, "current_palette": current_palette})
+
+
+@app.get("/palettes")
+def get_palettes():
+    return jsonify({"palettes": list(palettes.keys()), "current": current_palette})
+
+
+@app.post("/palette")
+def set_palette():
+    global current_palette
+    data = request.get_json()
+    palette_name = data.get("palette", "gray")
+    
+    if palette_name in palettes:
+        current_palette = palette_name
+        return jsonify({"success": True, "palette": current_palette})
+    else:
+        return jsonify({"success": False, "error": f"Palette '{palette_name}' not found"}), 400
 
 
 @app.get("/mjpeg")
