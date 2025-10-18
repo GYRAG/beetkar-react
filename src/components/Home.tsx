@@ -12,7 +12,7 @@ import {
 } from "@/components/ui/resizable-navbar";
 import { HexagonBackground } from "@/components/animate-ui/components/backgrounds/hexagon";
 import TrueFocus from "@/components/TrueFocus.jsx";
-import GradientButton from "@/components/ui/button-1";
+import { StarButton } from "@/components/star-button";
 import { useState } from "react";
 import { FeaturesSectionWithHoverEffects } from "@/components/feature-section-with-hover-effects";
 import { WordPullUp } from "@/components/ui/word-pull-up";
@@ -20,6 +20,7 @@ import { CyberneticBentoGrid } from "@/components/cybernetic-bento-grid";
 import { ContainerScroll } from "@/components/ui/container-scroll-animation";
 import SignupFormDemo from "@/components/signup-form-demo";
 import LoginFormDemo from "@/components/login-form-demo";
+import DemoLogin from "@/components/demo-login";
 import TeamSection from "@/components/team";
 import { Footer } from "@/components/ui/footer";
 import { ThemeToggle } from "@/components/ui/theme-toggle";
@@ -48,6 +49,7 @@ export function Home() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isSignupOpen, setIsSignupOpen] = useState(false);
   const [isLoginOpen, setIsLoginOpen] = useState(false);
+  const [isDemoLoginOpen, setIsDemoLoginOpen] = useState(false);
 
   // Function to handle smooth scroll with navbar offset
   const scrollToSection = (sectionId: string) => {
@@ -92,7 +94,7 @@ export function Home() {
               whileTap={{ scale: 0.95 }}
               transition={{ type: "spring", stiffness: 400, damping: 17 }}
             >
-              <NavbarButton variant="primary" onClick={() => navigate('/dashboard')}>Dashboard</NavbarButton>
+              <NavbarButton variant="primary" onClick={() => setIsDemoLoginOpen(true)}>დაშბორდი</NavbarButton>
             </motion.div>
           </div>
         </NavBody>
@@ -138,11 +140,11 @@ export function Home() {
                 className="w-full"
               >
                 <NavbarButton
-                  onClick={() => { navigate('/dashboard'); setIsMobileMenuOpen(false); }}
+                  onClick={() => { setIsDemoLoginOpen(true); setIsMobileMenuOpen(false); }}
                   variant="primary"
                   className="w-full"
                 >
-                  Dashboard
+                  დაშბორდი
                 </NavbarButton>
               </motion.div>
             </div>
@@ -190,6 +192,26 @@ export function Home() {
             </motion.div>
           </motion.div>
         )}
+        {isDemoLoginOpen && (
+          <motion.div
+            className="fixed inset-0 z-[100] flex items-center justify-center backdrop-blur-md backdrop-saturate-150 px-4"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setIsDemoLoginOpen(false)}
+          >
+            <motion.div
+              className="w-full max-w-sm md:max-w-md"
+              initial={{ y: 12, opacity: 0, scale: 0.80, filter: "blur(6px)" }}
+              animate={{ y: 0, opacity: 1, scale: 0.80, filter: "blur(0px)" }}
+              exit={{ y: 8, opacity: 0, scale: 0.7, filter: "blur(4px)" }}
+              transition={{ type: "spring", stiffness: 260, damping: 22 }}
+              onClick={(e: React.MouseEvent) => e.stopPropagation()}
+            >
+              <DemoLogin onClose={() => setIsDemoLoginOpen(false)} />
+            </motion.div>
+          </motion.div>
+        )}
       </AnimatePresence>
       {/* Hero Section with Hexagon Background */}
       <section id="Home" className="relative mt-8 w-full">
@@ -216,14 +238,16 @@ export function Home() {
               </TextShimmer>
             </div>
             <div className="mt-12 flex w-full justify-center">
-              <GradientButton 
-                width="260px" 
-                height="60px" 
-                className="[--color-background:theme(colors.neutral.950)] [--color-text:theme(colors.yellow.400)] font-hero"
+              <StarButton 
+                className="font-hero text-white transform scale-[1.6] hover:scale-[1.7] transition-transform duration-300 ease-in-out"
+                lightColor="#facc15"
+                backgroundColor="#171717"
+                lightWidth={120}
+                duration={2}
                 onClick={() => scrollToSection('features')}
               >
                 შემოგვიერთდი
-              </GradientButton>
+              </StarButton>
             </div>
             
           </div>

@@ -53,6 +53,7 @@ export function ChartAreaInteractive() {
     initialRange: "24h",
   })
 
+
   React.useEffect(() => {
     if (isMobile) {
       setTimeRange("1h")
