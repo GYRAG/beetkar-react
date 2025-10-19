@@ -13,6 +13,7 @@ import {
 import { HexagonBackground } from "@/components/animate-ui/components/backgrounds/hexagon";
 import TrueFocus from "@/components/TrueFocus.jsx";
 import { StarButton } from "@/components/star-button";
+import { HoverButton } from "@/components/hover-glow-button";
 import { useState } from "react";
 import { FeaturesSectionWithHoverEffects } from "@/components/feature-section-with-hover-effects";
 import { WordPullUp } from "@/components/ui/word-pull-up";
@@ -246,7 +247,7 @@ export function Home() {
                 duration={2}
                 onClick={() => scrollToSection('features')}
               >
-                შემოგვიერთდი
+                გაიგე მეტი
               </StarButton>
             </div>
             
@@ -295,7 +296,32 @@ export function Home() {
         </ContainerScroll>
       </section>
 
-      <section id="team" className="relative w-full mt-16 pt-20">
+      {/* Join Us Section */}
+      <section className="relative w-full mt-0 pt-0">
+        <div className="max-w-7xl mx-auto px-6 text-center">
+          <h2 className="text-3xl md:text-5xl font-extrabold mb-6 text-gray-900 dark:text-white">
+            შემოგვიერთდი Beetkar-ს
+          </h2>
+          <p className="text-lg md:text-xl text-gray-600 dark:text-gray-300 mb-12 max-w-3xl mx-auto">
+            იყავი ნაწილი რევოლუციისა, რომელიც იცვლის ფუტკრების მოვლის გზას. 
+            ჩვენთან ერთად შექმენი უფრო ჯანმრთელი და პროდუქტიული ფუტკრის ოჯახი.
+          </p>
+          <div className="flex justify-center">
+            <HoverButton
+              onClick={() => setIsDemoLoginOpen(true)}
+              className="text-xl font-semibold px-12 py-4"
+              glowColor="#facc15"
+              backgroundColor="#171717"
+              textColor="#ffffff"
+              hoverTextColor="#facc15"
+            >
+              შემოგვიერთდი
+            </HoverButton>
+          </div>
+        </div>
+      </section>
+
+      <section id="team" className="relative w-full mt-12 pt-16">
         <TeamSection />
       </section>
 

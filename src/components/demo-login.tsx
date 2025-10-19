@@ -14,7 +14,7 @@ export default function DemoLogin({ onClose }: { onClose?: () => void }) {
   const [isLoggingIn, setIsLoggingIn] = useState(false);
   const [formData, setFormData] = useState({
     email: "demo@beetkar.com",
-    password: "demo123456"
+    password: "BeetkarDemo2024!"
   });
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
