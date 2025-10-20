@@ -20,7 +20,13 @@ export function ThermalCameraStream({ src }: { src: string }) {
 
   const handleCapture = async () => {
     try {
-      await captureSingleImage()
+      console.log('Starting image capture...')
+      const result = await captureSingleImage()
+      if (result.success) {
+        console.log('Image captured successfully!', result)
+      } else {
+        console.error('Failed to capture image:', result.error)
+      }
     } catch (error) {
       console.error('Failed to capture image:', error)
     }
@@ -28,7 +34,9 @@ export function ThermalCameraStream({ src }: { src: string }) {
 
   const handleDownloadImages = async () => {
     try {
+      console.log('Starting download of', captureStatus.capturedImages.length, 'images...')
       await downloadImages()
+      console.log('Images downloaded successfully!')
     } catch (error) {
       console.error('Failed to download images:', error)
     }
@@ -64,7 +72,7 @@ export function ThermalCameraStream({ src }: { src: string }) {
                 height: "auto",
                 minHeight: "300px",
                 maxHeight: "400px",
-                imageRendering: "pixelated",
+                imageRendering: "auto",
                 objectFit: "contain",
                 display: "block"
               }} 

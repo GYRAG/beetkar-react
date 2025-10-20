@@ -2,5 +2,6 @@ flask
 flask-cors
 pillow
 numpy
+scipy
 tomli; python_version < "3.11"
 

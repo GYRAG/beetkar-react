@@ -39,8 +39,9 @@ class ImageCaptureService {
    */
   async captureImage(): Promise<ImageCaptureResult> {
     try {
-      // Get the latest image from the MJPEG stream
-      const response = await fetch(`${this.bridgeUrl}/mjpeg`, {
+      console.log('Fetching image from:', `${this.bridgeUrl}/capture`)
+      // Get a single image from the capture endpoint
+      const response = await fetch(`${this.bridgeUrl}/capture`, {
         method: 'GET',
         headers: {
           'Accept': 'image/jpeg',
@@ -52,9 +53,11 @@ class ImageCaptureService {
       }
 
       const imageBlob = await response.blob();
+      console.log('Image blob size:', imageBlob.size, 'bytes')
       
       // Convert blob to base64
       const base64 = await this.blobToBase64(imageBlob);
+      console.log('Base64 length:', base64.length)
       
       // Add to captured images array
       this.status.capturedImages.push(base64);
@@ -65,6 +68,8 @@ class ImageCaptureService {
         this.status.capturedImages = this.status.capturedImages.slice(-10);
       }
 
+      console.log('Total captured images:', this.status.capturedImages.length)
+
       return {
         success: true,
         imageData: base64,
@@ -72,6 +77,7 @@ class ImageCaptureService {
       };
     } catch (error) {
       const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+      console.error('Capture error:', errorMessage)
       this.status.error = errorMessage;
       
       return {
@@ -96,17 +102,23 @@ class ImageCaptureService {
   }
 
   /**
-   * Download all captured images as a zip file
+   * Download all captured images as individual files
    */
   async downloadCapturedImages(): Promise<void> {
     if (this.status.capturedImages.length === 0) {
       throw new Error('No images to download');
     }
 
-    // For now, download images individually
-    // In a production app, you might want to create a zip file
+    console.log('Downloading', this.status.capturedImages.length, 'images...')
+    
+    // Download images individually with timestamps
     this.status.capturedImages.forEach((imageData, index) => {
-      this.downloadImage(imageData, `thermal_capture_${index + 1}.jpg`);
+      const timestamp = this.status.lastCaptureTime ? 
+        new Date(this.status.lastCaptureTime).toISOString().replace(/[:.]/g, '-') : 
+        new Date().toISOString().replace(/[:.]/g, '-');
+      const filename = `thermal_capture_${timestamp}_${index + 1}.jpg`;
+      console.log('Downloading image:', filename)
+      this.downloadImage(imageData, filename);
     });
   }
 
@@ -114,12 +126,15 @@ class ImageCaptureService {
    * Download a single image
    */
   private downloadImage(base64Data: string, filename: string): void {
+    console.log('Creating download link for:', filename)
     const link = document.createElement('a');
     link.href = `data:image/jpeg;base64,${base64Data}`;
     link.download = filename;
     document.body.appendChild(link);
+    console.log('Triggering download...')
     link.click();
     document.body.removeChild(link);
+    console.log('Download triggered for:', filename)
   }
 
   /**
