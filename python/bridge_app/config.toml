@@ -1,4 +1,4 @@
-camera_host = "10.32.187.3"
+camera_host = "10.183.119.3"
 camera_port = 5001
 fps_limit = 8
 
