@@ -238,7 +238,7 @@ export function Home() {
                 ჭკვიანი სენსორებით აღჭურვილი Beetkar აკვირდება სკის ტემპერატურას, ტენიანობას, ხმასა და ვიბრაციას, რათა დაავადებები შენიშნოს მანამდე, სანამ ისინი გავრცელდება.
               </TextShimmer>
             </div>
-            <div className="mt-12 flex w-full justify-center">
+            <div className="mt-12 flex w-full justify-center gap-10 flex-wrap items-center">
               <StarButton 
                 className="font-hero text-white transform scale-[1.6] hover:scale-[1.7] transition-transform duration-300 ease-in-out"
                 lightColor="#facc15"
@@ -249,6 +249,16 @@ export function Home() {
               >
                 გაიგე მეტი
               </StarButton>
+              <HoverButton
+                onClick={() => setIsDemoLoginOpen(true)}
+                className="font-hero text-base px-6 py-3 transform hover:scale-110 transition-transform duration-300 ease-in-out"
+                glowColor="#facc15"
+                backgroundColor="#171717"
+                textColor="#ffffff"
+                hoverTextColor="#facc15"
+              >
+                სცადე დემო ვერსია
+              </HoverButton>
             </div>
             
           </div>
