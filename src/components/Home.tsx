@@ -22,7 +22,7 @@ import { ContainerScroll } from "@/components/ui/container-scroll-animation";
 import SignupFormDemo from "@/components/signup-form-demo";
 import LoginFormDemo from "@/components/login-form-demo";
 import DemoLogin from "@/components/demo-login";
-import TeamSection from "@/components/team";
+// import TeamSection from "@/components/team";
 import { Footer } from "@/components/ui/footer";
 import { ThemeToggle } from "@/components/ui/theme-toggle";
 import { TextShimmer } from "@/components/ui/text-shimmer";
@@ -41,10 +41,10 @@ export function Home() {
       name: "რა შეგვიძლია",
       link: "#functions",
     },
-    {
-      name: "ჩვენს შესახებ",
-      link: "#team",
-    },
+    // {
+    //   name: "ჩვენს შესახებ",
+    //   link: "#team",
+    // },
   ];
 
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -331,9 +331,9 @@ export function Home() {
         </div>
       </section>
 
-      <section id="team" className="relative w-full mt-12 pt-16">
+      {/* <section id="team" className="relative w-full mt-12 pt-16">
         <TeamSection />
-      </section>
+      </section> */}
 
       {/* Footer */}
       <Footer
@@ -344,7 +344,7 @@ export function Home() {
           { href: "#Home", label: "მთავარი" },
           { href: "#features", label: "როგორ მუშაობს" },
           { href: "#functions", label: "რა შეგვიძლია" },
-          { href: "#team", label: "ჩვენს შესახებ" },
+          // { href: "#team", label: "ჩვენს შესახებ" },
           { href: "/dashboard", label: "Dashboard" },
         ]}
         legalLinks={[
