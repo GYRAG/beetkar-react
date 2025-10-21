@@ -23,13 +23,13 @@ export const description = "ფუტკრის ჯანმრთელობ
 const chartData = [
   { 
     status: "ჯანმრთელი", 
-    score: 100, 
+    score: 68, 
     fill: "hsl(120, 60%, 50%)", // Green for healthy
     description: "ყველა ინდიკატორი ნორმალურ დიაპაზონშია"
   },
   { 
     status: "გაფრთხილება", 
-    score: 0, 
+    score: 32, 
     fill: "hsl(30, 80%, 60%)", // Orange for warning
     description: "ზოგიერთი ინდიკატორი საყურადღებოა"
   },
@@ -66,7 +66,7 @@ export function ChartHiveHealth() {
   return (
     <Card className="flex flex-col">
       <CardHeader className="items-center pb-0">
-        <CardTitle>ფუტკრის ჯანმრთელობის სკორი</CardTitle>
+        <CardTitle>ფუტკრის ჯანმრთელობის ინდექსი</CardTitle>
         <CardDescription>ბოლო 24 საათის მონაცემები</CardDescription>
       </CardHeader>
       <CardContent className="flex-1 pb-0 relative">
